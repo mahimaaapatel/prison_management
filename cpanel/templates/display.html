@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display</title>
+</head>
+<body>
+<div class="row">
+    <div class="col-sm-12">
+        Customer
+         <input type="text" name="loc" placeholder="Enter location">
+         <asp:Button ID="btnSearch" runat="server" Text="Go" CssClass="btn btn-primary btn-md center-block" Style="width: 100px; margin-bottom: 10px;" onclick="location.href='{% url '' %}' />
+         <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-danger btn-md center-block" Style="width: 100px;" OnClick="btnClear_Click" />
+     </div>
+</div>
+
+</body>
+</html>

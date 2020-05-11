@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Visitor Form</title>
+        <style>
+            div{
+                position: fixed;
+                right: 10px;
+                top: 5px;
+            }
+            .form-style-9{
+      max-width: 450px;
+      background: #FAFAFA;
+      padding: 30px;
+      margin: 50px auto;
+      box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+      border-radius: 10px;
+      border: 6px solid #305A72;
+    }
+    .form-style-9 ul{
+      padding:0;
+      margin:0;
+      list-style:none;
+    }
+    .form-style-9 ul li{
+      display: block;
+      margin-bottom: 10px;
+      min-height: 35px;
+    }
+    .form-style-9 ul li  .field-style{
+      box-sizing: border-box; 
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box; 
+      padding: 8px;
+      outline: none;
+      border: 1px solid #B0CFE0;
+      -webkit-transition: all 0.30s ease-in-out;
+      -moz-transition: all 0.30s ease-in-out;
+      -ms-transition: all 0.30s ease-in-out;
+      -o-transition: all 0.30s ease-in-out;
+    
+    }.form-style-9 ul li  .field-style:focus{
+      box-shadow: 0 0 5px #B0CFE0;
+      border:1px solid #B0CFE0;
+    }
+    .form-style-9 ul li .field-split{
+      width: 49%;
+    }
+    .form-style-9 ul li .field-full{
+      width: 100%;
+    }
+    .form-style-9 ul li input.align-left{
+      float:left;
+    }
+    .form-style-9 ul li input.align-right{
+      float:right;
+    }
+    .form-style-9 ul li textarea{
+      width: 100%;
+      height: 100px;
+    }
+    .form-style-9 ul li input[type="button"], 
+    .form-style-9 ul li input[type="submit"] {
+      -moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
+      -webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
+      box-shadow: inset 0px 1px 0px 0px #3985B1;
+      background-color: #216288;
+      border: 1px solid #17445E;
+      display: inline-block;
+      cursor: pointer;
+      color: #FFFFFF;
+      padding: 8px 18px;
+      text-decoration: none;
+      font: 12px Arial, Helvetica, sans-serif;
+    }
+    .form-style-9 ul li input[type="button"]:hover, 
+    .form-style-9 ul li input[type="submit"]:hover {
+      background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
+      background-color: #28739E;
+    }
+    
+        </style>
+    </head>
+<body>
+
+    <form class=form-style-9 action="/postaddvisitor/" method="post">
+        {% csrf_token %}
+        Visitor Name:
+        <input type="text" name="vname"><br><br>
+        Photo:
+        <input type="file" id="img4" name="img4" accept="image/*" required>
+        <input type="hidden" name="url4" id="url4">
+        <button type="button" onclick="uploadimagev()">Upload</button>
+        <br><br>
+        Prisoner ID:
+        <input type="number" name="id"><br><br>
+        Address:
+        <br><textarea rows="10" cols="60" name="address">Enter details</textarea><br><br>
+        State:
+        <select name="state">
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Chandigarh">Chandigarh</option>
+            <option value="Chhattisgarh">Chhattisgarh</option>
+            <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+            <option value="Daman and Diu">Daman and Diu</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Lakshadweep">Lakshadweep</option>
+            <option value="Puducherry">Puducherry</option>
+            <option value="Goa">Goa</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Meghalaya">Meghalaya</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Uttarakhand">Uttarakhand</option>
+            <option value="West Bengal">West Bengal</option>
+        </select><br><br>
+        Pincode:
+        <input type="number" name="pincode"><br><br>
+        <input type="submit" value="Submit" />
+    </form>
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+<script>
+    var config = {
+      'apiKey': "AIzaSyCLjLncnTczSOD7yJd-mgSZLPoLl8icUZw",
+    'authDomain': "cpanel-dee36.firebaseapp.com",
+    'databaseURL': "https://cpanel-dee36.firebaseio.com",
+    'projectId': "cpanel-dee36",
+    'storageBucket': "cpanel-dee36.appspot.com",
+    'messagingSenderId': "327800301185",
+    };
+    firebase.initializeApp(config);
+
+    function uploadimagev() {
+        var storage = firebase.storage();
+        var file=document.getElementById("img4").files[0];
+        var storageref=storage.ref();
+        var thisref1=storageref.child(file.name).put(file);
+        thisref1.on('state_changed',function(snapshot)
+        {
+            console.log("File uploaded succesfully.")
+        },
+            function(error) {
+
+            },
+            function() {
+            var downloadURL=thisref1.snapshot.downloadURL;
+            console.log("Got URL");
+            document.getElementById("url4").value=downloadURL;
+            alert("File uploaded succesfully")
+            });
+
+    }
+
+</script>
+</html>
